@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lt34k.github.io/celeya/sitemap.xml
