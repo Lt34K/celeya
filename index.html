@@ -116,8 +116,7 @@ $("premiumIntent").onclick=()=>{let n=0;try{n=Number(localStorage.getItem("celey
 (function initAnalyticsConsent(){
   let choice=null;
   try{choice=localStorage.getItem("celeyaAnalyticsConsent")}catch(e){}
-  if(choice==="accepted"){loadAnalytics();return}
-  if(choice!=="rejected")$("cookieBanner").classList.add("show");
+  $("privacyPrefs").onclick=()=>$("cookieBanner").classList.add("show");
   $("acceptAnalytics").onclick=()=>{
     try{localStorage.setItem("celeyaAnalyticsConsent","accepted")}catch(e){}
     $("cookieBanner").classList.remove("show");
@@ -131,7 +130,8 @@ $("premiumIntent").onclick=()=>{let n=0;try{n=Number(localStorage.getItem("celey
     if(analyticsReady){location.reload();return}
     toast("Mesure d’audience refusée");
   };
-  $("privacyPrefs").onclick=()=>$("cookieBanner").classList.add("show");
+  if(choice==="accepted")loadAnalytics();
+  else if(choice!=="rejected")$("cookieBanner").classList.add("show");
 })();
 const today=new Date().toISOString().slice(0,10);$("birthDate").max=today;$("otherBirth").max=today;if(state.birthDate){$("firstName").value=state.firstName||"";$("birthDate").value=state.birthDate||"";$("birthTime").value=state.birthTime||"";$("birthCity").value=state.birthCity||""}
 </script>
